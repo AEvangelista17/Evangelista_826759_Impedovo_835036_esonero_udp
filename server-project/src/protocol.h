@@ -16,19 +16,7 @@
  * ============================================================================
  */
 
-#define SERVER_PORT 56700
-#define MAX_CITY_LEN 64
-
-// --- Tipi di richiesta ---
-#define TYPE_TEMPERATURE 't'
-#define TYPE_HUMIDITY    'h'
-#define TYPE_WIND        'w'
-#define TYPE_PRESSURE    'p'
-
-// --- Codici di stato della risposta ---
-#define STATUS_OK 0
-#define STATUS_CITY_NOT_FOUND 1
-#define STATUS_INVALID_REQUEST 2
+// #define ...
 
 /*
  * ============================================================================
@@ -36,18 +24,7 @@
  * ============================================================================
  */
 
-
-typedef struct {
-    char type;                // 't', 'h', 'w', 'p'
-    char city[MAX_CITY_LEN];  // nome città (null-terminated)
-} weather_request_t;
-
-
-typedef struct {
-    unsigned int status;      // 0=successo, 1=città non trovata, 2=richiesta invalida
-    char type;                // eco del tipo richiesto
-    float value;              // dato meteo generato
-} weather_response_t;
+// Weather request and response structures 
 
 /*
  * ============================================================================
@@ -55,13 +32,7 @@ typedef struct {
  * ============================================================================
  */
 
-// Funzioni meteo (implementate nel server)
-float get_temperature(void);
-float get_humidity(void);
-float get_wind(void);
-float get_pressure(void);
+// Add here the signatures of the functions you implement
 
-// Funzioni di utilità per il Server (richieste dal progetto)
-int is_valid_city(const char *c);
 
 #endif /* PROTOCOL_H_ */
