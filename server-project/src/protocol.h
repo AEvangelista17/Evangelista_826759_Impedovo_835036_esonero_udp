@@ -2,7 +2,7 @@
  * protocol.h
  *
  * Shared header file for UDP client and server
- * Contains protocol definitions, data structures, constants and function prototypes
+ * Contains protocol definitions, data structures, constants and function prototype
  */
 
 #ifndef PROTOCOL_H_

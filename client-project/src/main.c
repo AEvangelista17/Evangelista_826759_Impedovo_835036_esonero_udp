@@ -4,7 +4,7 @@
  * UDP Client - Template for Computer Networks assignment
  *
  * This file contains the boilerplate code for a UDP client
- * portable across Windows, Linux, and macOS.
+ * portable across Windows, Linux, and macOS
  */
 
 #if defined WIN32
