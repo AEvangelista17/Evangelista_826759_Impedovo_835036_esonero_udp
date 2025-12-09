@@ -1,0 +1,189 @@
+11:56:01 **** Rebuild of configuration Debug for project client-project ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\main.o" "..\\src\\main.c" 
+..\src\main.c:27:9: warning: "NO_ERROR" redefined
+   27 | #define NO_ERROR 0
+      |         ^~~~~~~~
+In file included from C:/Users/anton/Downloads/winlibs-x86_64-posix-seh-gcc-14.2.0-llvm-18.1.8-mingw-w64ucrt-12.0.0-r1/mingw64/x86_64-w64-mingw32/include/winbase.h:2817,
+                 from C:/Users/anton/Downloads/winlibs-x86_64-posix-seh-gcc-14.2.0-llvm-18.1.8-mingw-w64ucrt-12.0.0-r1/mingw64/x86_64-w64-mingw32/include/windows.h:70,
+                 from C:/Users/anton/Downloads/winlibs-x86_64-posix-seh-gcc-14.2.0-llvm-18.1.8-mingw-w64ucrt-12.0.0-r1/mingw64/x86_64-w64-mingw32/include/winsock.h:10,
+                 from ..\src\main.c:11:
+C:/Users/anton/Downloads/winlibs-x86_64-posix-seh-gcc-14.2.0-llvm-18.1.8-mingw-w64ucrt-12.0.0-r1/mingw64/x86_64-w64-mingw32/include/winerror.h:165:9: note: this is the location of the previous definition
+  165 | #define NO_ERROR __MSABI_LONG(0)
+      |         ^~~~~~~~
+..\src\main.c: In function 'main':
+..\src\main.c:49:13: warning: unused variable 'my_socket' [-Wunused-variable]
+   49 |         int my_socket;
+      |             ^~~~~~~~~
+gcc -o client-project "src\\main.o" -lwsock32 
+11:56:07 **** Rebuild of configuration Debug for project server-project ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\main.o" "..\\src\\main.c" 
+..\src\main.c:27:9: warning: "NO_ERROR" redefined
+   27 | #define NO_ERROR 0
+      |         ^~~~~~~~
+In file included from C:/Users/anton/Downloads/winlibs-x86_64-posix-seh-gcc-14.2.0-llvm-18.1.8-mingw-w64ucrt-12.0.0-r1/mingw64/x86_64-w64-mingw32/include/winbase.h:2817,
+                 from C:/Users/anton/Downloads/winlibs-x86_64-posix-seh-gcc-14.2.0-llvm-18.1.8-mingw-w64ucrt-12.0.0-r1/mingw64/x86_64-w64-mingw32/include/windows.h:70,
+                 from C:/Users/anton/Downloads/winlibs-x86_64-posix-seh-gcc-14.2.0-llvm-18.1.8-mingw-w64ucrt-12.0.0-r1/mingw64/x86_64-w64-mingw32/include/winsock.h:10,
+                 from ..\src\main.c:11:
+C:/Users/anton/Downloads/winlibs-x86_64-posix-seh-gcc-14.2.0-llvm-18.1.8-mingw-w64ucrt-12.0.0-r1/mingw64/x86_64-w64-mingw32/include/winerror.h:165:9: note: this is the location of the previous definition
+  165 | #define NO_ERROR __MSABI_LONG(0)
+      |         ^~~~~~~~
+..\src\main.c: In function 'main':
+..\src\main.c:61:9: warning: 'my_socket' may be used uninitialized [-Wmaybe-uninitialized]
+   61 |         closesocket(my_socket);
+      |         ^~~~~~~~~~~~~~~~~~~~~~
+..\src\main.c:49:13: note: 'my_socket' was declared here
+   49 |         int my_socket;
+      |             ^~~~~~~~~
+gcc -o server-project "src\\main.o" -lwsock32 
+Info: Nothing to build for client-project
+Info: Nothing to build for server-project
+09:30:23 **** Rebuild of configuration Debug for project client-project ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\main.o" "..\\src\\main.c" 
+In file included from C:/Users/anton/Downloads/winlibs-x86_64-posix-seh-gcc-14.2.0-llvm-18.1.8-mingw-w64ucrt-12.0.0-r1/mingw64/x86_64-w64-mingw32/include/ws2tcpip.h:17,
+                 from ..\src\main.c:12:
+C:/Users/anton/Downloads/winlibs-x86_64-posix-seh-gcc-14.2.0-llvm-18.1.8-mingw-w64ucrt-12.0.0-r1/mingw64/x86_64-w64-mingw32/include/winsock2.h:15:2: warning: #warning Please include winsock2.h before windows.h [-Wcpp]
+   15 | #warning Please include winsock2.h before windows.h
+      |  ^~~~~~~
+..\src\main.c:29:9: warning: "NO_ERROR" redefined
+   29 | #define NO_ERROR 0
+      |         ^~~~~~~~
+In file included from C:/Users/anton/Downloads/winlibs-x86_64-posix-seh-gcc-14.2.0-llvm-18.1.8-mingw-w64ucrt-12.0.0-r1/mingw64/x86_64-w64-mingw32/include/winbase.h:2817,
+                 from C:/Users/anton/Downloads/winlibs-x86_64-posix-seh-gcc-14.2.0-llvm-18.1.8-mingw-w64ucrt-12.0.0-r1/mingw64/x86_64-w64-mingw32/include/windows.h:70,
+                 from C:/Users/anton/Downloads/winlibs-x86_64-posix-seh-gcc-14.2.0-llvm-18.1.8-mingw-w64ucrt-12.0.0-r1/mingw64/x86_64-w64-mingw32/include/winsock.h:10,
+                 from ..\src\main.c:11:
+C:/Users/anton/Downloads/winlibs-x86_64-posix-seh-gcc-14.2.0-llvm-18.1.8-mingw-w64ucrt-12.0.0-r1/mingw64/x86_64-w64-mingw32/include/winerror.h:165:9: note: this is the location of the previous definition
+  165 | #define NO_ERROR __MSABI_LONG(0)
+      |         ^~~~~~~~
+gcc -o client-project "src\\main.o" -lwsock32 
+C:/Users/anton/Downloads/winlibs-x86_64-posix-seh-gcc-14.2.0-llvm-18.1.8-mingw-w64ucrt-12.0.0-r1/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/14.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe: src\main.o: in function `resolve_server_address':
+C:\Users\anton\Desktop\Evangelista_826759_Impedovo_835036_esonero_udp\client-project\Debug/../src/main.c:140:(.text+0x30c): undefined reference to `__imp_getaddrinfo'
+C:/Users/anton/Downloads/winlibs-x86_64-posix-seh-gcc-14.2.0-llvm-18.1.8-mingw-w64ucrt-12.0.0-r1/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/14.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe: C:\Users\anton\Desktop\Evangelista_826759_Impedovo_835036_esonero_udp\client-project\Debug/../src/main.c:149:(.text+0x3a7): undefined reference to `__imp_getnameinfo'
+C:/Users/anton/Downloads/winlibs-x86_64-posix-seh-gcc-14.2.0-llvm-18.1.8-mingw-w64ucrt-12.0.0-r1/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/14.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe: C:\Users\anton\Desktop\Evangelista_826759_Impedovo_835036_esonero_udp\client-project\Debug/../src/main.c:151:(.text+0x3bb): undefined reference to `__imp_freeaddrinfo'
+C:/Users/anton/Downloads/winlibs-x86_64-posix-seh-gcc-14.2.0-llvm-18.1.8-mingw-w64ucrt-12.0.0-r1/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/14.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe: C:\Users\anton\Desktop\Evangelista_826759_Impedovo_835036_esonero_udp\client-project\Debug/../src/main.c:156:(.text+0x3fd): undefined reference to `__imp_getnameinfo'
+C:/Users/anton/Downloads/winlibs-x86_64-posix-seh-gcc-14.2.0-llvm-18.1.8-mingw-w64ucrt-12.0.0-r1/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/14.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe: C:\Users\anton\Desktop\Evangelista_826759_Impedovo_835036_esonero_udp\client-project\Debug/../src/main.c:161:(.text+0x421): undefined reference to `__imp_freeaddrinfo'
+collect2.exe: error: ld returned 1 exit status
+09:30:33 **** Rebuild of configuration Debug for project server-project ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\main.o" "..\\src\\main.c" 
+In file included from C:/Users/anton/Downloads/winlibs-x86_64-posix-seh-gcc-14.2.0-llvm-18.1.8-mingw-w64ucrt-12.0.0-r1/mingw64/x86_64-w64-mingw32/include/ws2tcpip.h:17,
+                 from ..\src\main.c:12:
+C:/Users/anton/Downloads/winlibs-x86_64-posix-seh-gcc-14.2.0-llvm-18.1.8-mingw-w64ucrt-12.0.0-r1/mingw64/x86_64-w64-mingw32/include/winsock2.h:15:2: warning: #warning Please include winsock2.h before windows.h [-Wcpp]
+   15 | #warning Please include winsock2.h before windows.h
+      |  ^~~~~~~
+..\src\main.c:30:9: warning: "NO_ERROR" redefined
+   30 | #define NO_ERROR 0
+      |         ^~~~~~~~
+In file included from C:/Users/anton/Downloads/winlibs-x86_64-posix-seh-gcc-14.2.0-llvm-18.1.8-mingw-w64ucrt-12.0.0-r1/mingw64/x86_64-w64-mingw32/include/winbase.h:2817,
+                 from C:/Users/anton/Downloads/winlibs-x86_64-posix-seh-gcc-14.2.0-llvm-18.1.8-mingw-w64ucrt-12.0.0-r1/mingw64/x86_64-w64-mingw32/include/windows.h:70,
+                 from C:/Users/anton/Downloads/winlibs-x86_64-posix-seh-gcc-14.2.0-llvm-18.1.8-mingw-w64ucrt-12.0.0-r1/mingw64/x86_64-w64-mingw32/include/winsock.h:10,
+                 from ..\src\main.c:11:
+C:/Users/anton/Downloads/winlibs-x86_64-posix-seh-gcc-14.2.0-llvm-18.1.8-mingw-w64ucrt-12.0.0-r1/mingw64/x86_64-w64-mingw32/include/winerror.h:165:9: note: this is the location of the previous definition
+  165 | #define NO_ERROR __MSABI_LONG(0)
+      |         ^~~~~~~~
+gcc -o server-project "src\\main.o" -lwsock32 
+C:/Users/anton/Downloads/winlibs-x86_64-posix-seh-gcc-14.2.0-llvm-18.1.8-mingw-w64ucrt-12.0.0-r1/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/14.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe: src\main.o: in function `log_request':
+C:\Users\anton\Desktop\Evangelista_826759_Impedovo_835036_esonero_udp\server-project\Debug/../src/main.c:125:(.text+0x44d): undefined reference to `__imp_getnameinfo'
+C:/Users/anton/Downloads/winlibs-x86_64-posix-seh-gcc-14.2.0-llvm-18.1.8-mingw-w64ucrt-12.0.0-r1/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/14.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe: C:\Users\anton\Desktop\Evangelista_826759_Impedovo_835036_esonero_udp\server-project\Debug/../src/main.c:129:(.text+0x488): undefined reference to `__imp_getnameinfo'
+collect2.exe: error: ld returned 1 exit status
+09:30:41 **** Incremental Build of configuration Debug for project client-project ****
+Info: Internal Builder is used for build
+gcc -o client-project "src\\main.o" -lwsock32 
+C:/Users/anton/Downloads/winlibs-x86_64-posix-seh-gcc-14.2.0-llvm-18.1.8-mingw-w64ucrt-12.0.0-r1/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/14.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe: src\main.o: in function `resolve_server_address':
+C:\Users\anton\Desktop\Evangelista_826759_Impedovo_835036_esonero_udp\client-project\Debug/../src/main.c:140:(.text+0x30c): undefined reference to `__imp_getaddrinfo'
+C:/Users/anton/Downloads/winlibs-x86_64-posix-seh-gcc-14.2.0-llvm-18.1.8-mingw-w64ucrt-12.0.0-r1/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/14.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe: C:\Users\anton\Desktop\Evangelista_826759_Impedovo_835036_esonero_udp\client-project\Debug/../src/main.c:149:(.text+0x3a7): undefined reference to `__imp_getnameinfo'
+C:/Users/anton/Downloads/winlibs-x86_64-posix-seh-gcc-14.2.0-llvm-18.1.8-mingw-w64ucrt-12.0.0-r1/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/14.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe: C:\Users\anton\Desktop\Evangelista_826759_Impedovo_835036_esonero_udp\client-project\Debug/../src/main.c:151:(.text+0x3bb): undefined reference to `__imp_freeaddrinfo'
+C:/Users/anton/Downloads/winlibs-x86_64-posix-seh-gcc-14.2.0-llvm-18.1.8-mingw-w64ucrt-12.0.0-r1/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/14.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe: C:\Users\anton\Desktop\Evangelista_826759_Impedovo_835036_esonero_udp\client-project\Debug/../src/main.c:156:(.text+0x3fd): undefined reference to `__imp_getnameinfo'
+C:/Users/anton/Downloads/winlibs-x86_64-posix-seh-gcc-14.2.0-llvm-18.1.8-mingw-w64ucrt-12.0.0-r1/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/14.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe: C:\Users\anton\Desktop\Evangelista_826759_Impedovo_835036_esonero_udp\client-project\Debug/../src/main.c:161:(.text+0x421): undefined reference to `__imp_freeaddrinfo'
+collect2.exe: error: ld returned 1 exit status
+09:30:42 **** Incremental Build of configuration Debug for project server-project ****
+Info: Internal Builder is used for build
+gcc -o server-project "src\\main.o" -lwsock32 
+C:/Users/anton/Downloads/winlibs-x86_64-posix-seh-gcc-14.2.0-llvm-18.1.8-mingw-w64ucrt-12.0.0-r1/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/14.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe: src\main.o: in function `log_request':
+C:\Users\anton\Desktop\Evangelista_826759_Impedovo_835036_esonero_udp\server-project\Debug/../src/main.c:125:(.text+0x44d): undefined reference to `__imp_getnameinfo'
+C:/Users/anton/Downloads/winlibs-x86_64-posix-seh-gcc-14.2.0-llvm-18.1.8-mingw-w64ucrt-12.0.0-r1/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/14.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe: C:\Users\anton\Desktop\Evangelista_826759_Impedovo_835036_esonero_udp\server-project\Debug/../src/main.c:129:(.text+0x488): undefined reference to `__imp_getnameinfo'
+collect2.exe: error: ld returned 1 exit status
+09:30:42 **** Incremental Build of configuration Debug for project client-project ****
+Info: Internal Builder is used for build
+gcc -o client-project "src\\main.o" -lwsock32 
+C:/Users/anton/Downloads/winlibs-x86_64-posix-seh-gcc-14.2.0-llvm-18.1.8-mingw-w64ucrt-12.0.0-r1/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/14.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe: src\main.o: in function `resolve_server_address':
+C:\Users\anton\Desktop\Evangelista_826759_Impedovo_835036_esonero_udp\client-project\Debug/../src/main.c:140:(.text+0x30c): undefined reference to `__imp_getaddrinfo'
+C:/Users/anton/Downloads/winlibs-x86_64-posix-seh-gcc-14.2.0-llvm-18.1.8-mingw-w64ucrt-12.0.0-r1/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/14.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe: C:\Users\anton\Desktop\Evangelista_826759_Impedovo_835036_esonero_udp\client-project\Debug/../src/main.c:149:(.text+0x3a7): undefined reference to `__imp_getnameinfo'
+C:/Users/anton/Downloads/winlibs-x86_64-posix-seh-gcc-14.2.0-llvm-18.1.8-mingw-w64ucrt-12.0.0-r1/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/14.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe: C:\Users\anton\Desktop\Evangelista_826759_Impedovo_835036_esonero_udp\client-project\Debug/../src/main.c:151:(.text+0x3bb): undefined reference to `__imp_freeaddrinfo'
+C:/Users/anton/Downloads/winlibs-x86_64-posix-seh-gcc-14.2.0-llvm-18.1.8-mingw-w64ucrt-12.0.0-r1/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/14.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe: C:\Users\anton\Desktop\Evangelista_826759_Impedovo_835036_esonero_udp\client-project\Debug/../src/main.c:156:(.text+0x3fd): undefined reference to `__imp_getnameinfo'
+C:/Users/anton/Downloads/winlibs-x86_64-posix-seh-gcc-14.2.0-llvm-18.1.8-mingw-w64ucrt-12.0.0-r1/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/14.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe: C:\Users\anton\Desktop\Evangelista_826759_Impedovo_835036_esonero_udp\client-project\Debug/../src/main.c:161:(.text+0x421): undefined reference to `__imp_freeaddrinfo'
+collect2.exe: error: ld returned 1 exit status
+09:30:42 **** Incremental Build of configuration Debug for project server-project ****
+Info: Internal Builder is used for build
+gcc -o server-project "src\\main.o" -lwsock32 
+C:/Users/anton/Downloads/winlibs-x86_64-posix-seh-gcc-14.2.0-llvm-18.1.8-mingw-w64ucrt-12.0.0-r1/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/14.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe: src\main.o: in function `log_request':
+C:\Users\anton\Desktop\Evangelista_826759_Impedovo_835036_esonero_udp\server-project\Debug/../src/main.c:125:(.text+0x44d): undefined reference to `__imp_getnameinfo'
+C:/Users/anton/Downloads/winlibs-x86_64-posix-seh-gcc-14.2.0-llvm-18.1.8-mingw-w64ucrt-12.0.0-r1/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/14.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe: C:\Users\anton\Desktop\Evangelista_826759_Impedovo_835036_esonero_udp\server-project\Debug/../src/main.c:129:(.text+0x488): undefined reference to `__imp_getnameinfo'
+collect2.exe: error: ld returned 1 exit status
+09:33:23 **** Incremental Build of configuration Debug for project client-project ****
+Info: Internal Builder is used for build
+gcc -o client-project "src\\main.o" -lwsock32 
+C:/Users/anton/Downloads/winlibs-x86_64-posix-seh-gcc-14.2.0-llvm-18.1.8-mingw-w64ucrt-12.0.0-r1/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/14.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe: src\main.o: in function `resolve_server_address':
+C:\Users\anton\Desktop\Evangelista_826759_Impedovo_835036_esonero_udp\client-project\Debug/../src/main.c:140:(.text+0x30c): undefined reference to `__imp_getaddrinfo'
+C:/Users/anton/Downloads/winlibs-x86_64-posix-seh-gcc-14.2.0-llvm-18.1.8-mingw-w64ucrt-12.0.0-r1/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/14.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe: C:\Users\anton\Desktop\Evangelista_826759_Impedovo_835036_esonero_udp\client-project\Debug/../src/main.c:149:(.text+0x3a7): undefined reference to `__imp_getnameinfo'
+C:/Users/anton/Downloads/winlibs-x86_64-posix-seh-gcc-14.2.0-llvm-18.1.8-mingw-w64ucrt-12.0.0-r1/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/14.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe: C:\Users\anton\Desktop\Evangelista_826759_Impedovo_835036_esonero_udp\client-project\Debug/../src/main.c:151:(.text+0x3bb): undefined reference to `__imp_freeaddrinfo'
+C:/Users/anton/Downloads/winlibs-x86_64-posix-seh-gcc-14.2.0-llvm-18.1.8-mingw-w64ucrt-12.0.0-r1/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/14.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe: C:\Users\anton\Desktop\Evangelista_826759_Impedovo_835036_esonero_udp\client-project\Debug/../src/main.c:156:(.text+0x3fd): undefined reference to `__imp_getnameinfo'
+C:/Users/anton/Downloads/winlibs-x86_64-posix-seh-gcc-14.2.0-llvm-18.1.8-mingw-w64ucrt-12.0.0-r1/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/14.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe: C:\Users\anton\Desktop\Evangelista_826759_Impedovo_835036_esonero_udp\client-project\Debug/../src/main.c:161:(.text+0x421): undefined reference to `__imp_freeaddrinfo'
+collect2.exe: error: ld returned 1 exit status
+09:33:23 **** Incremental Build of configuration Debug for project server-project ****
+Info: Internal Builder is used for build
+gcc -o server-project "src\\main.o" -lwsock32 
+C:/Users/anton/Downloads/winlibs-x86_64-posix-seh-gcc-14.2.0-llvm-18.1.8-mingw-w64ucrt-12.0.0-r1/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/14.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe: src\main.o: in function `log_request':
+C:\Users\anton\Desktop\Evangelista_826759_Impedovo_835036_esonero_udp\server-project\Debug/../src/main.c:125:(.text+0x44d): undefined reference to `__imp_getnameinfo'
+C:/Users/anton/Downloads/winlibs-x86_64-posix-seh-gcc-14.2.0-llvm-18.1.8-mingw-w64ucrt-12.0.0-r1/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/14.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe: C:\Users\anton\Desktop\Evangelista_826759_Impedovo_835036_esonero_udp\server-project\Debug/../src/main.c:129:(.text+0x488): undefined reference to `__imp_getnameinfo'
+collect2.exe: error: ld returned 1 exit status
+09:38:13 **** Incremental Build of configuration Debug for project client-project ****
+Info: Internal Builder is used for build
+gcc -o client-project "src\\main.o" -lwsock32 -lws2_32 
+09:38:15 **** Incremental Build of configuration Debug for project server-project ****
+Info: Internal Builder is used for build
+gcc -shared -o libserver-project "src\\main.o" -lws2_32 -lwsock32 
+09:51:59 **** Clean-only build of configuration Debug for project client-project ****
+rm -rf client-project src/main.o src/main.d 
+09:51:59 **** Clean-only build of configuration Debug for project server-project ****
+rm -rf src/main.o src/main.d server-project 
+09:52:00 **** Rebuild of configuration Debug for project client-project ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\main.o" "..\\src\\main.c" 
+In file included from C:/Users/anton/Downloads/winlibs-x86_64-posix-seh-gcc-14.2.0-llvm-18.1.8-mingw-w64ucrt-12.0.0-r1/mingw64/x86_64-w64-mingw32/include/ws2tcpip.h:17,
+                 from ..\src\main.c:12:
+C:/Users/anton/Downloads/winlibs-x86_64-posix-seh-gcc-14.2.0-llvm-18.1.8-mingw-w64ucrt-12.0.0-r1/mingw64/x86_64-w64-mingw32/include/winsock2.h:15:2: warning: #warning Please include winsock2.h before windows.h [-Wcpp]
+   15 | #warning Please include winsock2.h before windows.h
+      |  ^~~~~~~
+..\src\main.c:29:9: warning: "NO_ERROR" redefined
+   29 | #define NO_ERROR 0
+      |         ^~~~~~~~
+In file included from C:/Users/anton/Downloads/winlibs-x86_64-posix-seh-gcc-14.2.0-llvm-18.1.8-mingw-w64ucrt-12.0.0-r1/mingw64/x86_64-w64-mingw32/include/winbase.h:2817,
+                 from C:/Users/anton/Downloads/winlibs-x86_64-posix-seh-gcc-14.2.0-llvm-18.1.8-mingw-w64ucrt-12.0.0-r1/mingw64/x86_64-w64-mingw32/include/windows.h:70,
+                 from C:/Users/anton/Downloads/winlibs-x86_64-posix-seh-gcc-14.2.0-llvm-18.1.8-mingw-w64ucrt-12.0.0-r1/mingw64/x86_64-w64-mingw32/include/winsock.h:10,
+                 from ..\src\main.c:11:
+C:/Users/anton/Downloads/winlibs-x86_64-posix-seh-gcc-14.2.0-llvm-18.1.8-mingw-w64ucrt-12.0.0-r1/mingw64/x86_64-w64-mingw32/include/winerror.h:165:9: note: this is the location of the previous definition
+  165 | #define NO_ERROR __MSABI_LONG(0)
+      |         ^~~~~~~~
+gcc -o client-project "src\\main.o" -lwsock32 -lws2_32 
+09:52:01 **** Rebuild of configuration Debug for project server-project ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\main.o" "..\\src\\main.c" 
+In file included from C:/Users/anton/Downloads/winlibs-x86_64-posix-seh-gcc-14.2.0-llvm-18.1.8-mingw-w64ucrt-12.0.0-r1/mingw64/x86_64-w64-mingw32/include/ws2tcpip.h:17,
+                 from ..\src\main.c:12:
+C:/Users/anton/Downloads/winlibs-x86_64-posix-seh-gcc-14.2.0-llvm-18.1.8-mingw-w64ucrt-12.0.0-r1/mingw64/x86_64-w64-mingw32/include/winsock2.h:15:2: warning: #warning Please include winsock2.h before windows.h [-Wcpp]
+   15 | #warning Please include winsock2.h before windows.h
+      |  ^~~~~~~
+..\src\main.c:30:9: warning: "NO_ERROR" redefined
+   30 | #define NO_ERROR 0
+      |         ^~~~~~~~
+In file included from C:/Users/anton/Downloads/winlibs-x86_64-posix-seh-gcc-14.2.0-llvm-18.1.8-mingw-w64ucrt-12.0.0-r1/mingw64/x86_64-w64-mingw32/include/winbase.h:2817,
+                 from C:/Users/anton/Downloads/winlibs-x86_64-posix-seh-gcc-14.2.0-llvm-18.1.8-mingw-w64ucrt-12.0.0-r1/mingw64/x86_64-w64-mingw32/include/windows.h:70,
+                 from C:/Users/anton/Downloads/winlibs-x86_64-posix-seh-gcc-14.2.0-llvm-18.1.8-mingw-w64ucrt-12.0.0-r1/mingw64/x86_64-w64-mingw32/include/winsock.h:10,
+                 from ..\src\main.c:11:
+C:/Users/anton/Downloads/winlibs-x86_64-posix-seh-gcc-14.2.0-llvm-18.1.8-mingw-w64ucrt-12.0.0-r1/mingw64/x86_64-w64-mingw32/include/winerror.h:165:9: note: this is the location of the previous definition
+  165 | #define NO_ERROR __MSABI_LONG(0)
+      |         ^~~~~~~~
+gcc -o server-project "src\\main.o" -lws2_32 -lwsock32 

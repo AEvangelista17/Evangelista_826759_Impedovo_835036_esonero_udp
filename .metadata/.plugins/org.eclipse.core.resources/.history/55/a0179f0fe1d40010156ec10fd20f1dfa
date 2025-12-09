@@ -1,0 +1,296 @@
+/*
+ * client-project.c
+ *
+ * UDP Client - Template for Computer Networks assignment
+ *
+ * This file contains the boilerplate code for a UDP client
+ * portable across Windows, Linux, and macOS.
+ */
+
+#if defined WIN32
+#include <winsock.h>
+#include <ws2tcpip.h>
+#else
+#include <string.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <arpa/inet.h>
+#include <netinet/in.h>
+#include <netdb.h>
+#define closesocket close
+#endif
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <ctype.h>
+#include "protocol.h"
+
+#define NO_ERROR 0
+#define BUFFER_SIZE (sizeof(uint32_t) + sizeof(char) + sizeof(float) + 1)
+
+void clearwinsock() {
+#if defined WIN32
+	WSACleanup();
+#endif
+}
+
+// =========================================================================
+// FUNZIONI DI UTILITÀ PER SERIALIZZAZIONE, VALIDAZIONE E DNS
+// =========================================================================
+
+// 1. Serializza la richiesta
+size_t serialize_request(const weather_request_t *req, char *buffer) {
+    size_t offset = 0;
+
+    // Serializza type
+    memcpy(buffer + offset, &req->type, sizeof(char));
+    offset += sizeof(char);
+
+    // Serializza city (array di char, no conversione)
+    size_t city_len = strlen(req->city) + 1; // +1 per il null terminator
+    memcpy(buffer + offset, req->city, city_len);
+    offset += city_len;
+
+    return offset;
+}
+
+// 2. Deserializza la risposta
+int deserialize_response(const char *buffer, size_t len, weather_response_t *res) {
+
+    // Dimensione minima attesa
+    if (len < sizeof(uint32_t) + sizeof(char) + sizeof(uint32_t)) return 0;
+
+    size_t offset = 0;
+
+    // Deserializza status
+    uint32_t net_status;
+    memcpy(&net_status, buffer + offset, sizeof(uint32_t));
+    res->status = ntohl(net_status);
+    offset += sizeof(uint32_t);
+
+    // Deserializza type
+    memcpy(&res->type, buffer + offset, sizeof(char));
+    offset += sizeof(char);
+
+    // Deserializza value
+    uint32_t net_value;
+    memcpy(&net_value, buffer + offset, sizeof(uint32_t));
+    net_value = ntohl(net_value);
+
+    // Conversione uint32_t
+    memcpy(&res->value, &net_value, sizeof(float));
+    offset += sizeof(uint32_t);
+
+    return 1;
+}
+
+// 3. Parsing e Validazione della richiesta da riga di comando
+int parse_and_validate_request(const char *request_str, char *type, char *city) {
+
+
+    if (strchr(request_str, '\t') != NULL) return 0;
+
+
+    const char *first_space = strchr(request_str, ' ');
+    if (first_space == NULL) return 0;
+
+
+    if (first_space - request_str != 1) {
+        fprintf(stderr, "Errore: il tipo di richiesta ('%c') deve essere un singolo carattere.\n", request_str[0]);
+        return 0;
+    }
+
+    *type = request_str[0];
+
+
+    const char *city_start = first_space;
+    while (*city_start == ' ') {
+        city_start++;
+    }
+
+    // Verifica lunghezza città
+    size_t city_len = strlen(city_start);
+    if (city_len == 0 || city_len >= MAX_CITY_LEN) {
+        if (city_len >= MAX_CITY_LEN) {
+             fprintf(stderr, "Errore: il nome della città supera la lunghezza massima di 63 caratteri.\n");
+        }
+        return 0;
+    }
+
+
+    strncpy(city, city_start, MAX_CITY_LEN - 1);
+    city[MAX_CITY_LEN - 1] = '\0';
+
+    return 1;
+}
+
+// 4. Risoluzione DNS e reverse lookup per nome server e IP
+int resolve_server_address(const char *server_str, int port, struct sockaddr_in *addr_out, char *name_out, char *ip_out) {
+    struct addrinfo hints, *res, *p;
+    char port_str[6];
+
+    // 1. Risoluzione Forward
+    memset(&hints, 0, sizeof(hints));
+    hints.ai_family = AF_INET;
+    hints.ai_socktype = SOCK_DGRAM;
+
+    snprintf(port_str, sizeof(port_str), "%d", port);
+
+    if (getaddrinfo(server_str, port_str, &hints, &res) != 0) {
+        fprintf(stderr, "Errore risoluzione indirizzo server.\n");
+        return 0;
+    }
+
+    p = res;
+    memcpy(addr_out, p->ai_addr, p->ai_addrlen);
+
+    // 2. Risoluzione Reverse
+    if (getnameinfo((struct sockaddr*)addr_out, sizeof(struct sockaddr_in),
+                    ip_out, INET_ADDRSTRLEN, NULL, 0, NI_NUMERICHOST) != 0) {
+        freeaddrinfo(res);
+        return 0;
+    }
+
+    // Ottieni il nome host canonico
+    if (getnameinfo((struct sockaddr*)addr_out, sizeof(struct sockaddr_in),
+                    name_out, 64, NULL, 0, 0) != 0) {
+        strcpy(name_out, ip_out); // Usa IP come nome se fallisce
+    }
+
+    freeaddrinfo(res);
+    return 1;
+}
+
+// =========================================================================
+// MAIN LOGIC
+// =========================================================================
+
+int main(int argc, char *argv[]) {
+
+	// Inizializzazione Winsock
+#if defined WIN32
+	WSADATA wsa_data;
+	int result = WSAStartup(MAKEWORD(2,2), &wsa_data);
+	if (result != NO_ERROR) {
+		printf("Error at WSAStartup()\n");
+		return 0;
+	}
+#endif
+
+	int my_socket = -1;
+    char server_str[64] = "localhost";
+    int port = SERVER_PORT;
+    char type = 0;
+    char city[MAX_CITY_LEN] = {0};
+    char *request_arg = NULL;
+
+    // --- 1. Parsing Argomenti ---
+    for (int i = 1; i < argc; ++i) {
+        if (!strcmp(argv[i], "-s") && i+1 < argc) {
+            strncpy(server_str, argv[++i], 63);
+            server_str[63] = '\0';
+        }
+        else if (!strcmp(argv[i], "-p") && i+1 < argc)
+            port = atoi(argv[++i]);
+
+        else if (!strcmp(argv[i], "-r") && i+1 < argc) {
+            request_arg = argv[++i];
+        }
+    }
+
+    if (!request_arg) {
+        fprintf(stderr, "Errore: il parametro -r \"type city\" è obbligatorio.\n");
+        clearwinsock();
+        return EXIT_FAILURE;
+    }
+
+    // --- 2. Validazione Richiesta (Type e City) ---
+    if (!parse_and_validate_request(request_arg, &type, city)) {
+        clearwinsock();
+        return EXIT_FAILURE;
+    }
+
+	// --- 3. Risoluzione Indirizzo Server ---
+    struct sockaddr_in server_addr;
+    char server_name[64] = {0};
+    char server_ip[INET_ADDRSTRLEN] = {0};
+
+    if (!resolve_server_address(server_str, port, &server_addr, server_name, server_ip)) {
+        clearwinsock();
+        return EXIT_FAILURE;
+    }
+
+	// --- 4. Creazione Socket UDP ---
+    my_socket = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP);
+    if (my_socket < 0) {
+        perror("socket() fallita");
+        clearwinsock();
+        return EXIT_FAILURE;
+    }
+
+	// --- 5. Implementazione Logica di Comunicazione UDP ---
+    weather_request_t req;
+    req.type = type;
+    strcpy(req.city, city);
+
+    char tx_buffer[MAX_CITY_LEN + 1];
+    size_t req_len = serialize_request(&req, tx_buffer);
+
+    // Invio Richiesta
+    if (sendto(my_socket, tx_buffer, req_len, 0, (struct sockaddr*)&server_addr, sizeof(server_addr)) != req_len) {
+        perror("sendto() fallita");
+        closesocket(my_socket);
+        clearwinsock();
+        return EXIT_FAILURE;
+    }
+
+    char rx_buffer[BUFFER_SIZE];
+    struct sockaddr_in from_addr;
+    socklen_t from_len = sizeof(from_addr);
+
+    // Ricezione Risposta
+    ssize_t bytes_received = recvfrom(my_socket, rx_buffer, BUFFER_SIZE - 1, 0,
+                                     (struct sockaddr*)&from_addr, &from_len);
+
+    if (bytes_received <= 0) {
+        perror("recvfrom() fallita");
+        closesocket(my_socket);
+        clearwinsock();
+        return EXIT_FAILURE;
+    }
+
+	// --- 6. Deserializzazione e Output ---
+    weather_response_t res;
+    if (!deserialize_response(rx_buffer, bytes_received, &res)) {
+        closesocket(my_socket);
+        clearwinsock();
+        return EXIT_FAILURE;
+    }
+
+    // Output formattato
+    printf("Ricevuto risultato dal server %s (ip %s). ", server_name, server_ip);
+
+    if (res.status == STATUS_OK) {
+        if (res.type == TYPE_TEMPERATURE)
+            printf("%s: Temperatura = %.1f°C\n", city, res.value);
+        else if (res.type == TYPE_HUMIDITY)
+            printf("%s: Umidità = %.1f%%\n", city, res.value);
+        else if (res.type == TYPE_WIND)
+            printf("%s: Vento = %.1f km/h\n", city, res.value);
+        else if (res.type == TYPE_PRESSURE)
+            printf("%s: Pressione = %.1f hPa\n", city, res.value);
+    } else if (res.status == STATUS_CITY_NOT_FOUND) {
+        printf("Città non disponibile\n");
+    } else if (res.status == STATUS_INVALID_REQUEST) {
+        printf("Richiesta non valida\n");
+    }
+
+	// --- 7. Chiusura Socket ---
+	closesocket(my_socket);
+
+	printf("Client terminated.\n");
+
+	clearwinsock();
+	return 0;
+} // main end

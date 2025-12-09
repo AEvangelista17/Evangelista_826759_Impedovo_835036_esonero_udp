@@ -1,0 +1,22 @@
+09:52:00 **** Rebuild of configuration Debug for project client-project ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\main.o" "..\\src\\main.c" 
+In file included from C:/Users/anton/Downloads/winlibs-x86_64-posix-seh-gcc-14.2.0-llvm-18.1.8-mingw-w64ucrt-12.0.0-r1/mingw64/x86_64-w64-mingw32/include/ws2tcpip.h:17,
+                 from ..\src\main.c:12:
+C:/Users/anton/Downloads/winlibs-x86_64-posix-seh-gcc-14.2.0-llvm-18.1.8-mingw-w64ucrt-12.0.0-r1/mingw64/x86_64-w64-mingw32/include/winsock2.h:15:2: warning: #warning Please include winsock2.h before windows.h [-Wcpp]
+   15 | #warning Please include winsock2.h before windows.h
+      |  ^~~~~~~
+..\src\main.c:29:9: warning: "NO_ERROR" redefined
+   29 | #define NO_ERROR 0
+      |         ^~~~~~~~
+In file included from C:/Users/anton/Downloads/winlibs-x86_64-posix-seh-gcc-14.2.0-llvm-18.1.8-mingw-w64ucrt-12.0.0-r1/mingw64/x86_64-w64-mingw32/include/winbase.h:2817,
+                 from C:/Users/anton/Downloads/winlibs-x86_64-posix-seh-gcc-14.2.0-llvm-18.1.8-mingw-w64ucrt-12.0.0-r1/mingw64/x86_64-w64-mingw32/include/windows.h:70,
+                 from C:/Users/anton/Downloads/winlibs-x86_64-posix-seh-gcc-14.2.0-llvm-18.1.8-mingw-w64ucrt-12.0.0-r1/mingw64/x86_64-w64-mingw32/include/winsock.h:10,
+                 from ..\src\main.c:11:
+C:/Users/anton/Downloads/winlibs-x86_64-posix-seh-gcc-14.2.0-llvm-18.1.8-mingw-w64ucrt-12.0.0-r1/mingw64/x86_64-w64-mingw32/include/winerror.h:165:9: note: this is the location of the previous definition
+  165 | #define NO_ERROR __MSABI_LONG(0)
+      |         ^~~~~~~~
+gcc -o client-project "src\\main.o" -lwsock32 -lws2_32 
+
+09:52:01 Build Finished. 0 errors, 2 warnings. (took 1s.683ms)
+
